@@ -3,6 +3,8 @@
 ?>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<script
@@ -102,11 +104,6 @@
 
 <script>
 function load() {
-	if( /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-		// prevent mobile devices
-		alert("not designed for mobile devices");
-		return;
-	}
 
 
 	setTimeout( function() {
