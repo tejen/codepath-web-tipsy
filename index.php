@@ -1,5 +1,27 @@
 <?php
+if(isset($_GET["ajax"])) { // if key($_GET) == "ajax"
+	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	setlocale(LC_MONETARY, $locale);
 
+	if(!isset($_POST["amount"]) || !isset($_POST["tip"]) || !isset($_POST["people"])) {
+		die(json_encode(array("error" => "server error: server request parameters missing/incomplete")));
+	}
+	if(!is_numeric($_POST["amount"]) ||
+	  ($_POST["tip"] != "custom" && !is_numeric($_POST["tip"]) || ($_POST["tip"] == "custom" && !is_numeric(@$_POST["tip-custom"]))) || 
+	  ($_POST["people"] != "custom" && !is_numeric($_POST["people"])) || ($_POST["people"] == "custom" && !is_numeric(@$_POST["people-custom"]))) {
+		die(json_encode(array("error" => "Invalid entry")));
+	}
+
+	$amount = intval($_POST["amount"]);
+	$tip = intval($_POST["tip"]);
+		if($_POST["tip"] == "custom") $tip = intval($_POST["tip-custom"]);
+	$people = intval($_POST["people"]);
+		if($_POST["people"] == "custom") $people = intval($_POST["people-custom"]);
+
+	$grandtotal = $amount + ($amount * ($tip/100));
+	$perhead = $grandtotal / $people;
+	die(json_encode(array("grand-total" => money_format('%n', $grandtotal), "per-head" => money_format('%n', $perhead))));
+}
 ?>
 <html>
 	<head>
@@ -80,10 +102,18 @@
 					<br>
 					<br>
 					<br>
-					<div id=""> <!-- id="total" -->
+					<div id="total">
 					<hr>
 						<div class="left">total:</div>
 						<div class="right">
+							<div class="overlap" id="error"></div>
+							<div class="overlap" id="result">
+								<span class="grand-total">$104.34</span>
+								<br>
+								<span class="per-head">$2</span>
+								<span>/</span>
+								<img src="img/head.png" style="">							
+							</div>
 							<div class="sk-cube-grid">
 								<div class="sk-cube sk-cube1"></div>
 								<div class="sk-cube sk-cube2"></div>
@@ -182,6 +212,26 @@ function calculate() {
 		showTotal();
 	} else {
 		hideTotal();
+	function fetch() {
+		$.post( "?ajax", $(document.tipsy).serialize(), function(data) {
+			var json;
+			try {
+				json = $.parseJSON(data);
+			} catch (e) {
+				alert("An unexpected error occurred: server returned a malformed response.");
+				return;
+			}
+			if(typeof json.error != "undefined") {
+				$("div.sk-cube-grid").fadeOut();
+				$("#error").html("error:" + json.error);
+				$("#error").fadein();
+				return;
+			}
+			$("#result .grand-total").html(json['grand-total']);
+			$("#result .per-head").html(json['per-head']);
+			$("div.sk-cube-grid").fadeOut();
+			$("#result").fadeIn();
+		});
 	}
 }
 </script>
