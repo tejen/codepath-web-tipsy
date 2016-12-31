@@ -153,6 +153,16 @@ div.block.body {
 	}
 }
 
+@media (max-width: 500px) {
+  input#amount {
+    margin-top: 16px!important;
+    padding-left: 5px!important;
+  }
+  div.block.body > div:nth-of-type(3) .left {
+    font-size: 40px!important;
+    padding-top: 2px!important;
+  }
+}
 
 div.block.body hr {
     border-style: outset;
