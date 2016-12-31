@@ -4,6 +4,11 @@
     box-sizing: initial;
 }
 
+::-webkit-input-placeholder { font-weight: 100; }
+::-moz-placeholder { font-weight: 100; } /* firefox 19+ */
+:-ms-input-placeholder { font-weight: 100; } /* ie */
+input:-moz-placeholder { font-weight: 100; }
+
 body {
 	background: #f3cfff;
 	color: #7C568B;
@@ -71,13 +76,13 @@ div.block.header > img {
 
 div.block.header {
 	margin-top: 30px;
-    text-align: center;
-    font-size: 36px;
+  text-align: center;
+  font-size: 36px;
 }
 
 div.block.header .brand .disclaimers {
 	font-size: 10px;
-    vertical-align: super;
+  vertical-align: super;
 }
 
 div.block.header .brand {
@@ -88,12 +93,12 @@ div.block.header .brand {
 }
 
 div.block.body {
-	margin-top: 34px;
-    padding: 0% 20%;
-    background: #7C568B;
-    color: #f3cfff;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25) inset;
+  margin-top: 34px;
   min-height: 100%;
+  padding: 0% 20%;
+  background: #7C568B;
+  color: #f3cfff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25) inset;
 }
 
 @media (max-width: 1280px) { 
@@ -210,6 +215,7 @@ input#amount {
 
 .segmented-control .list-group-item {
     display: inline-block;
+    font-weight: 200;
 }
 .segmented-control .list-group-item {
 	margin-bottom: 0;
@@ -243,12 +249,12 @@ input#amount {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#percent::-webkit-inner-spin-button, 
-#percent::-webkit-outer-spin-button { 
+.list-group-item input[type='text']::-webkit-inner-spin-button, 
+.list-group-item input[type='text']::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
 }
-#percent {
+.list-group-item input[type='text'] {
 	padding: 0;
 	background: transparent;
     border: none;
@@ -256,7 +262,7 @@ input#amount {
     border-bottom: 1px dotted rgba(243, 207, 255, 0.4);
     text-align: right;
 }
-#percent.min-width{
+.list-group-item input[type='text'].min-width{
 	min-width: 42px;
 }
 
@@ -275,7 +281,8 @@ input#amount {
 .sk-cube-grid {
   width: 40px;
   height: 40px;
-  margin: 50px 0px 0px 30px
+  margin: 50px 0px 0px 30px;
+  float: left;
 }
 
 .sk-cube-grid .sk-cube {
@@ -332,4 +339,45 @@ input#amount {
     -webkit-transform: scale3D(0, 0, 1);
             transform: scale3D(0, 0, 1);
   } 
+}
+
+.overlap {
+    padding-top: 40px;
+    float: left;
+    position: absolute;
+    font-size: 40px;
+}
+
+#error {
+  color: #ff5d3f;
+  text-shadow: 0px -1px rgba(0, 0, 0, 0.25);
+  display: none;
+}
+
+#result {
+  display: none;
+}
+
+#result > span:nth-of-type(1) {
+  font-weight: 200;
+  padding-left: 10px;
+}
+
+#result img {
+  opacity: 0.7;
+  width: 17px;
+  margin-left: -6px;
+  padding-top: 6px;
+}
+
+#result > span:nth-of-type(2) {
+  padding-left: 20px;
+  vertical-align: middle;
+  font-size: 30px;
+}
+
+#result > span:nth-of-type(3) {
+  font-size: 20px;
+  margin-left: -5px;
+  vertical-align: baseline;
 }
