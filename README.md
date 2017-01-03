@@ -24,13 +24,15 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://img.tejen.net/fca82ddbbb500152c0aae8be1f6e7380.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+[<img src='http://img.tejen.net/fca82ddbbb500152c0aae8be1f6e7380.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />](https://tejen.net/sub/codepath/tipsy/)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Inspired by my [tipsy iOS app](https://github.com/tejen/codepath-tipsy) from Spring 2016 :)
+
+To see this in action, visit https://tejen.net/sub/codepath/tipsy/.
 
 ## License
 
