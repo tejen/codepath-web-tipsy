@@ -4,7 +4,8 @@
 
 Submitted by: **Tejen Patel**
 
-Time spent: **6** hours spent in total
+Time spent: **6** hours spent in total  
+(including time spent experimenting with designs :stuck_out_tongue:)
 
 ## User Stories
 
